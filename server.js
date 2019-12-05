@@ -83,7 +83,13 @@ const startServer = async () => {
   const server = new ApolloServer({
     typeDefs: typeDefs,
     resolvers: resolvers,
-    introspection: true
+    introspection: true,
+    playground: {
+      endpoint: `https://job-back-heroko.herokuapp.com/graphql`,
+      settings: {
+        "editor.theme": "dark"
+      }
+    }
   });
 
   server.applyMiddleware({ app });
