@@ -21,8 +21,6 @@ const startServer = async () => {
     useNewUrlParser: true,
     useUnifiedTopology:true
   });
-  mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/your-app-name');
-
   app.listen({ port: port }, () =>
     console.log(`🚀 Server ready at http://localhost:${port}${server.graphqlPath}`)
   );
