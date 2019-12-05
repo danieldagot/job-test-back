@@ -44,7 +44,7 @@ var mongodb = require("mongodb");
 var MongoClient = mongodb.MongoClient;
 
 //mongodb://heroku_7kvrjp7h:ebp758qdj6f9u1monqhr8d82a5@ds061641.mlabcom:61641/heroku_7kvrjp7h
-bodyParser()
+bodyParser();
 var url =
   "mongodb://heroku_7kvrjp7h:ebp758qdj6f9u1monqhr8d82a5@ds061641.mlab.com:61641/heroku_7kvrjp7h";
 // app.use(
@@ -65,13 +65,15 @@ var url =
 //   })
 // );
 
-app.use(bodyParser)
+app.use(bodyParser.json());
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "YOUR-DOMAIN.TLD"); // update to match the domain you will make the request from
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
   next();
 });
-
 
 MongoClient.connect(url, function(err, db) {
   if (err) {
