@@ -8,6 +8,7 @@ const mongoose = require("mongoose");
 const resolvers = require("./src/resolvers");
 const typeDefs = require("./src/typeDefs");
 const express = require("express")
+
 const startServer = async () => {
   const app = express();
   const server = new ApolloServer({
