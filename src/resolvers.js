@@ -1,4 +1,5 @@
 let numConstactor = require("./models/numbers");
+const bodyParser = require("body-parser");
 var prepare = (o) => {
   o._id = o._id.toString()
   return o

@@ -44,7 +44,6 @@ var mongodb = require("mongodb");
 var MongoClient = mongodb.MongoClient;
 
 //mongodb://heroku_7kvrjp7h:ebp758qdj6f9u1monqhr8d82a5@ds061641.mlabcom:61641/heroku_7kvrjp7h
-bodyParser();
 var url =
   "mongodb://heroku_7kvrjp7h:ebp758qdj6f9u1monqhr8d82a5@ds061641.mlab.com:61641/heroku_7kvrjp7h";
 // app.use(
@@ -66,6 +65,7 @@ var url =
 // );
 
 app.use(bodyParser.json());
+
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "YOUR-DOMAIN.TLD"); // update to match the domain you will make the request from
   res.header(
@@ -89,7 +89,6 @@ MongoClient.connect(url, function(err, db) {
 });
 
 const startServer = async () => {
-  const app = express();
   const server = new ApolloServer({
     typeDefs: typeDefs,
     resolvers: resolvers,
@@ -101,15 +100,12 @@ const startServer = async () => {
       }
     }
   });
-
   server.applyMiddleware({ app });
 
   // await mongoose.connect("mongodb://localhost:27017/test3", {
   //   useNewUrlParser: true,
   //   useUnifiedTopology:true
   // });
-  app.use("/", (req, res) => res.send("pace go to /graphql"));
-
   app.listen(process.env.PORT || 4000, function() {
     console.log(
       "Express server listening on port %d in %s mode",
