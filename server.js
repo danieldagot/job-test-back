@@ -47,23 +47,31 @@ var MongoClient = mongodb.MongoClient;
 
 var url =
   "mongodb://heroku_7kvrjp7h:ebp758qdj6f9u1monqhr8d82a5@ds061641.mlab.com:61641/heroku_7kvrjp7h";
-app.use(
-  cors({
-    origin: function(origin, callback) {
-      // allow requests with no origin
-      // (like mobile apps or curl requests)
-      if (!origin) return callback(null, true);
+// app.use(
+//   cors({
+//     origin: function(origin, callback) {
+//       // allow requests with no origin
+//       // (like mobile apps or curl requests)
+//       if (!origin) return callback(null, true);
 
-      if (allowedOrigins.indexOf(origin) === -1) {
-        var msg =
-          "The CORS policy for this site does not " +
-          "allow access from the specified Origin.";
-        return callback(new Error(msg), false);
-      }
-      return callback(null, true);
-    }
-  })
-);
+//       if (allowedOrigins.indexOf(origin) === -1) {
+//         var msg =
+//           "The CORS policy for this site does not " +
+//           "allow access from the specified Origin.";
+//         return callback(new Error(msg), false);
+//       }
+//       return callback(null, true);
+//     }
+//   })
+// );
+
+
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "YOUR-DOMAIN.TLD"); // update to match the domain you will make the request from
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
 
 MongoClient.connect(url, function(err, db) {
   if (err) {
