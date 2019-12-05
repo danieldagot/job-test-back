@@ -40,8 +40,13 @@ const mongoose = require("mongoose");
 const resolvers = require("./src/resolvers");
 const typeDefs = require("./src/typeDefs");
 const cors = require('cors');
+var mongodb = require('mongodb');
+var MongoClient = mongodb.MongoClient;
+
+//mongodb://heroku_7kvrjp7h:ebp758qdj6f9u1monqhr8d82a5@ds061641.mlabcom:61641/heroku_7kvrjp7h
 
 
+var url = 'mongodb://heroku_7kvrjp7h:ebp758qdj6f9u1monqhr8d82a5@ds061641.mlab.com:61641/heroku_7kvrjp7h' 
 app.use(cors({
   origin: function (origin, callback) {
       // allow requests with no origin 
@@ -57,6 +62,18 @@ app.use(cors({
 }));
 
 
+MongoClient.connect(url, function (err, db) {
+  if (err) {
+    console.log('Unable to connect to the mongoDB server. Error:', err);
+  } else {
+    console.log('Connection established to', url);
+
+    // do some work here with the database.
+
+    //Close connection
+    db.close();
+  }
+});
 
 const startServer = async () => {
   const app = express();
@@ -67,10 +84,10 @@ const startServer = async () => {
 
   server.applyMiddleware({ app });
 
-  await mongoose.connect("mongodb://localhost:27017/test3", {
-    useNewUrlParser: true,
-    useUnifiedTopology:true
-  });
+  // await mongoose.connect("mongodb://localhost:27017/test3", {
+  //   useNewUrlParser: true,
+  //   useUnifiedTopology:true
+  // });
   app.use('/', (req, res) => res.send("pace go to /graphql"))
   app.listen(port)
 };
