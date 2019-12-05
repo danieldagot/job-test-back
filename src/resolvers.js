@@ -1,4 +1,4 @@
-num = require("./models/numbers");
+let numConstactor = require("./models/numbers");
 var prepare = (o) => {
   o._id = o._id.toString()
   return o
@@ -13,7 +13,6 @@ module.exports =  resolvers = {
   },
   Mutation: {
     createNumber: async (_, { number1,number2 }) => {
-
       let  molt =number1* number2
       let add = number1+ number2
       let num = {
@@ -23,8 +22,7 @@ module.exports =  resolvers = {
         moltNumber : molt,
         
       }
-      
-      const numder = new num(num);
+      const numder = new numConstactor(num);
       numder.save()
       console.log(numder);
       return  numder;
@@ -48,6 +46,5 @@ module.exports =  resolvers = {
       return "hello"
   },
 
- 
 }
 }

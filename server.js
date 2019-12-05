@@ -108,7 +108,7 @@ const startServer = async () => {
   // });
   app.use("/", (req, res) => res.send("pace go to /graphql"));
 
-  app.listen(process.env.PORT || 3000, function() {
+  app.listen(process.env.PORT || 4000, function() {
     console.log(
       "Express server listening on port %d in %s mode",
       this.address().port,
