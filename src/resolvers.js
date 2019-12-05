@@ -8,7 +8,7 @@ module.exports =  resolvers = {
   Query: {
     hello: () => "hi",
     numbers:  async () => {
-      return (await num.find().exec())
+      return (await numConstactor.find().exec())
     }
   },
   Mutation: {
