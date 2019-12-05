@@ -81,8 +81,8 @@ MongoClient.connect(url, function(err, db) {
 const startServer = async () => {
   const app = express();
   const server = new ApolloServer({
-    typeDefs,
-    resolvers,
+    typeDefs: typeDefs,
+    resolvers: resolvers,
     introspection: true
   });
 
