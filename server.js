@@ -72,10 +72,7 @@ const startServer = async () => {
     useUnifiedTopology:true
   });
   app.use('/', (req, res) => res.send("pace go to /graphql"))
-  app.listen({ port: port }, () =>
-  
-    console.log(`🚀 Server ready at http://localhost:4000${server.graphqlPath}`)
-  );
+  app.listen(port)
 };
 
 
