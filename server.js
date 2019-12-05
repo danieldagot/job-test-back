@@ -82,7 +82,8 @@ const startServer = async () => {
   const app = express();
   const server = new ApolloServer({
     typeDefs,
-    resolvers
+    resolvers,
+    introspection: true
   });
 
   server.applyMiddleware({ app });
