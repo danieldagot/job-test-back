@@ -42,7 +42,7 @@ module.exports =  resolvers = {
         moltNumber : molt,
         
       }
-      await num.updateOne({_id : id } , num )
+      await numConstactor.updateOne({_id : id } , num )
       return "hello"
   },
 
